@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 266 75% 48%;  /* #671cd9 */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 266 50% 60%; /* #8e63cf */
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 266 75% 5%;
+    --foreground: 0 0% 98%;
+    --card: 266 75% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 266 75% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 266 75% 48%;  /* #671cd9 */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 266 50% 60%; /* #8e63cf */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 266 50% 10%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 266 50% 10%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 266 50% 15%;
+    --input: 266 50% 15%;
+    --ring: 266 75% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(to bottom, 
+      hsl(266, 75%, 8%) 0%,
+      hsl(266, 75%, 4%) 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  input::placeholder {
+    @apply text-gray-400;
+  }
+  
+  button {
+    @apply transition-all duration-200;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #671cd9;
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #671cd9 rgba(0, 0, 0, 0.2);
+  }
+  
+  .glass-effect {
+    @apply bg-black/40 backdrop-blur-sm border border-[#8e63cf]/30;
+  }
+  
+  .hover-glass-effect {
+    @apply hover:bg-black/50 hover:border-[#8e63cf]/50 transition-all duration-300;
+  }
+  
+  .purple-glow {
+    box-shadow: 0 0 20px rgba(103, 28, 217, 0.2);
+  }
+  
+  .purple-glow-hover {
+    @apply hover:shadow-[0_0_20px_rgba(103,28,217,0.3)] transition-shadow duration-300;
+  }
+  
+  .glass-button {
+    @apply bg-[#671cd9]/20 hover:bg-[#671cd9]/40 transition-colors backdrop-blur-sm;
+  }
+  
+  .glass-header {
+    @apply bg-[#671cd9]/20 border-b border-[#8e63cf]/30 backdrop-blur-md;
+  }
+  
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-sm border border-[#8e63cf]/30 hover:bg-black/50 transition-colors;
+  }
+  
+  .animate-in {
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+  }
+  
+  .slide-in-from-top-2 {
+    animation-name: slideInFromTop2;
+  }
+  
+  .slide-in-from-top-5 {
+    animation-name: slideInFromTop5;
+  }
+  
+  @keyframes slideInFromTop2 {
+    from {
+      transform: translateY(-0.5rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromTop5 {
+    from {
+      transform: translateY(-1.25rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#671cd9] to-[#8e63cf];
+  }
+}
